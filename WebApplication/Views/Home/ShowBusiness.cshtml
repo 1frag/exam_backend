@@ -1,0 +1,44 @@
+@model WebApplication.Controllers.ManyBusinessModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Businesses</title>
+</head>
+<body>
+<div>
+
+    @foreach (var business in Model.Container)
+    {
+        <p>Name: @business.Name</p><br/>
+        <p>CountStaff: @business.CountStaff</p><br/>
+        <p>DateCreated: @business.DateCreated</p><br/>
+        <p>IsClosed: @business.IsClosed</p><br/>
+        <p>OwnerEmail: @business.OwnerEmail</p><br/>
+        if (business.StaffCollection != null)
+        {
+            foreach (var s in business.StaffCollection)
+            {
+                <p>FirstName = @s.FirstName</p><br/>
+                <p>LastName = @s.LastName</p><br/>
+                <p>Dismissed = @s.Dismissed</p><br/>
+                <p>JoinAt = @s.JoinAt</p><br/>
+                <p>Hobbies:</p><br/>
+                <ul>
+                    @foreach (var h in s.Hobbies)
+                    {
+                        <li>@h</li>
+                    }
+                </ul>
+            }
+        }
+    }
+
+</div>
+</body>
+</html>

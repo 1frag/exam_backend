@@ -1,0 +1,43 @@
+@model BusinessModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>title</title>
+</head>
+<body>
+<div>
+    <form method="post">
+        <input type="hidden" asp-for="Name" value="@Model.Name">
+        <input type="hidden" asp-for="CountStaff" value="@Model.CountStaff">
+        <input type="hidden" asp-for="DateCreated" value="@Model.DateCreated">
+        <input type="hidden" asp-for="IsClosed" value="@Model.IsClosed">
+        <input type="hidden" asp-for="OwnerEmail" value="@Model.OwnerEmail">
+        @for (var i = 0; i < Model.StaffCollection.Count; i++)
+        {
+            <input type="hidden" asp-for="@Model.StaffCollection[i].FirstName"
+                   value="@Model.StaffCollection[i].FirstName">
+            <input type="hidden" asp-for="@Model.StaffCollection[i].LastName"
+                   value="@Model.StaffCollection[i].LastName">
+            <input type="hidden" asp-for="@Model.StaffCollection[i].Dismissed"
+                   value="@Model.StaffCollection[i].Dismissed">
+            <input type="hidden" asp-for="@Model.StaffCollection[i].JoinAt"
+                   value="@Model.StaffCollection[i].JoinAt">
+            for (var j = 0; j < Model.StaffCollection[i].Hobbies.Count; j++)
+            {
+                <label for="hobby_@(i)_@(j)">Hobby for @Model.StaffCollection[i].FirstName</label>
+                <input type="text" id="hobby_@(i)_@(j)"
+                       asp-for="@Model.StaffCollection[i].Hobbies[j]">
+            }
+        }
+
+        <input type="submit" formmethod="post" asp-action="FillHobbies">
+    </form>
+</div>
+</body>
+</html>

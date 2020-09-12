@@ -1,0 +1,28 @@
+@model BusinessModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>create your own business</title>
+</head>
+<body>
+<div>
+    <form method="post">
+        <label for="name">Name: </label>
+        <input id="name" type="text" asp-for="@Model.Name">
+        <label for="count">Count: </label>
+        <input id="count" type="number" asp-for="@Model.CountStaff">
+        <label for="closed">IsClosed?: </label>
+        <input id="closed" type="checkbox" asp-for="@Model.IsClosed">
+        <label for="email">Your Email: </label>
+        <input id="email" type="email" asp-for="@Model.OwnerEmail">
+        <input type="submit" asp-action="NewBusiness" formmethod="post">
+    </form>
+</div>
+</body>
+</html>

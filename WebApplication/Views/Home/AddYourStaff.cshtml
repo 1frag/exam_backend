@@ -1,0 +1,56 @@
+@model BusinessModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>title</title>
+</head>
+<body>
+<div style="display: none">
+    Name: @Model.Name
+    CountStaff: @Model.CountStaff
+    DateCreated: @Model.DateCreated
+    IsClosed: @Model.IsClosed
+    OwnerEmail: @Model.OwnerEmail
+    @if (Model.StaffCollection != null)
+    {
+        foreach (var s in Model.StaffCollection)
+        {
+            @s.FirstName
+            @s.LastName
+        }
+    }
+</div>
+<div>
+    Specify your staff:
+    <form method="post">
+        <input type="hidden" asp-for="Name" value="@Model.Name">
+        <input type="hidden" asp-for="CountStaff" value="@Model.CountStaff">
+        <input type="hidden" asp-for="DateCreated" value="@Model.DateCreated">
+        <input type="hidden" asp-for="IsClosed" value="@Model.IsClosed">
+        <input type="hidden" asp-for="OwnerEmail" value="@Model.OwnerEmail">
+
+        @for (var i = 0; i < Model.CountStaff; i++)
+        {
+            <label for="first">First name</label>
+            <input type="text" id="first" asp-for="@Model.StaffCollection[i].FirstName">
+            <label for="last">Last name</label>
+            <input type="text" id="last" asp-for="@Model.StaffCollection[i].LastName">
+            <label for="dismissed">Dismissed</label>
+            <input type="checkbox" id="dismissed" asp-for="@Model.StaffCollection[i].Dismissed">
+            <label for="join_at">Join at</label>
+            <input type="date" id="join_at" asp-for="@Model.StaffCollection[i].JoinAt">
+            <br/>
+        }
+        <label for="code">Check code (3600 < x < 4986)</label>
+        <input type="number" min="0" max="9999" id="code" name="code">
+        <input type="submit" formmethod="post" asp-action="FillStaff">
+    </form>
+</div>
+</body>
+</html>
