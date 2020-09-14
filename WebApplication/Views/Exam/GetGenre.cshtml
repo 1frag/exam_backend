@@ -1,0 +1,39 @@
+@model GenreModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>title</title>
+</head>
+<body>
+<script>
+const createSubGenre = (pid) => document.location = '/New?parent='+pid;
+</script>
+<div>
+    Name: @Model.Name
+    @if (Model.Parent != 0)
+    {
+        <p>Parent: @Model.Parent</p>
+    }
+    else
+    {
+        <p>No parent</p>
+    }
+    <p>Description: @Model.Description</p>
+    @if (Model.Subgenres != null)
+    {
+        @foreach (var s in ViewBag.Subgs)
+        {
+            <p>SubId: <a href="/Get?id=@s.Id">@s.Name</a></p>
+        }
+    }
+    
+    <button onclick="createSubGenre(@Model.Id)">Create subgenre</button>
+</div>
+</body>
+</html>

@@ -27,6 +27,7 @@ namespace WebApplication
         {
             services.AddControllersWithViews();
             services.AddSingleton<IRegistrationService, RegistrationService>();
+            services.AddSingleton<IStorageGenres, StorageGenres>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

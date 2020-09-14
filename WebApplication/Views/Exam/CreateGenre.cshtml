@@ -1,0 +1,27 @@
+@model GenreViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>создать</title>
+</head>
+<body>
+<div>
+    <form method="post">
+        <input type="hidden" asp-for="@Model.GenreModelItem.Parent"
+               value="@Model.Parent">
+        Name
+        <input type="text" asp-for="@Model.GenreModelItem.Name"><br/>
+        Description
+        <input type="text" asp-for="@Model.GenreModelItem.Description"><br/>
+        
+        <input type="submit" formmethod="post">
+    </form>
+</div>
+</body>
+</html>
